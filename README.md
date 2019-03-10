@@ -9,3 +9,5 @@ From what I remember, I found meta-analytic correlations between variables in my
 
 ## should I use this
 No.  [This example from Muthen & Muthen](http://statmodel.com/power.shtml) is much better and probably where I got started for my thesis power analysis.
+
+![alt text](https://github.com/AJThurston/sempower/blob/master/thesissemresults.png)

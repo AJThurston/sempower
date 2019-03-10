@@ -1,0 +1,158 @@
+TITLE: Thurston Thesis Power Analysis
+
+MONTECARLO: 
+	NAMES ARE SA1-SA13 C1-C10 ES1-ES10 GMA1-GMA16 XP1-XP7 SP1-SP6;
+	NOBSERVATIONS = 350;
+	NREPS = 10;
+	SEED = 53487;
+	GENCLASSES = c (1);
+	CLASSES = c (1); 
+	SAVE = C:\Users\AJ Thurston\Desktop\simthesisdata.sav;
+
+ANALYSIS: 	
+	TYPE = MIXTURE;
+	ESTIMATOR = ML;
+
+MODEL MONTECARLO:
+	%OVERALL%
+
+!Estimated Factor Loadings (Based on Average Except SA);
+
+  	fPerSA BY SA2*.78 SA4*.71 SA10*.21 SA12*.31;
+  	fComSA BY SA3*.49 SA6*.58 SA8*.74 SA9*.63 SA13*.65;
+  	fProSA BY SA1*.5 SA5*.63 SA7*.03 SA11*.3;
+  	fC BY C1-C10*.61;
+  	fES BY ES1-ES10*.62;
+  	fXP BY XP1-XP7*.3;
+  	fSP BY SP1-SP6*.85;
+      fVERB BY GMA1*.70 GMA2*.70 GMA3*.70 GMA4*.60;
+      fLN by GMA5*.70 GMA6*.60 GMA7*.50 GMA8*.40;
+      fMR by GMA9*.70 GMA10*.50 GMA11*.40 GMA12*.40;
+      fTDR by GMA13*.60 GMA14*.50 GMA15*.20 GMA16*.20;
+      fGMA by fVERB@.8;
+      fGMA by fLN@.8;
+      fGMA by fMR@.7;
+      fGMA by fTDR@.5;
+
+  	fPerSA@1 fComSA@1 fProSA@1 fC@1 fES@1 fXP@1 fSP@1 fVERB@1 fLN@1 fMR@1 fTDR@1;
+  	SA1*.75 SA2*.39 SA3*.76 SA4*.50 SA5*.60 SA6*.66 SA7*1.00;
+      SA8*.45 SA9*.60 SA10*.96 SA11*.91 SA12*.90 SA13*.58;
+      C1-C10*.63 ES1-ES10*.63 XP1-XP7*.36 SP1-SP6*.36;
+      GMA1*.51 GMA2*.51 GMA3*.51 GMA4*.64 GMA5*.75 GMA6*.84 GMA7*.75;
+      GMA8*.84 GMA9*.51 GMA10*.75 GMA11*.84 GMA12*.84 GMA13*.64 GMA14*.75;
+      GMA15*.96 GMA16*.96;
+
+  !Path Coefficients;
+
+
+  	
+      fComSA on fPerSA*0.76;
+  	fProSA on fPerSA@0;
+  	fProSA on fComSA*0.85;
+
+      fC on fPerSA*0.54;
+  	fES on fPerSA*-0.44;
+  	fGMA on fPerSA@.37;
+  	fXP on fPerSA@.17;
+  	fSP on fPerSA@0;
+  	
+  	fC on fComSA@0;
+  	fES on fComSA@0;
+  	fGMA on fComSA*0.53;
+  	fXP on fComSA*0.32;
+  	fSP on fComSA@0;
+  	
+      fC on fProSA@0;
+  	fES on fProSA@0;
+  	fGMA on fProSA*0.57;
+  	fXP on fProSA*0.22;
+  	fSP on fProSA*-0.21;
+  	
+      fC with fES*-0.4;
+  	
+      fGMA on fC@0;
+  	fXP on fC@0;
+  	fSP on fC*0.18;
+
+  	fGMA on fES@0;
+  	fXP on fES@0;
+  	fSP on fES@0;
+  	
+      fXP on fGMA@0;
+  	fSP on fGMA@0;
+  	
+      fSP on fXP@0;
+
+
+MODEL:
+
+%OVERALL%
+
+!Estimated Factor Loadings (Based on Average Except SA);
+
+  	fPerSA BY SA2*.78 SA4*.71 SA10*.21 SA12*.31;
+  	fComSA BY SA3*.49 SA6*.58 SA8*.74 SA9*.63 SA13*.65;
+  	fProSA BY SA1*.5 SA5*.63 SA7*.03 SA11*.3;
+  	fC BY C1-C10*.61;
+  	fES BY ES1-ES10*.62;
+  	fXP BY XP1-XP7*.3;
+  	fSP BY SP1-SP6*.85;
+      fVERB BY GMA1*.70 GMA2*.70 GMA3*.70 GMA4*.60;
+      fLN by GMA5*.70 GMA6*.60 GMA7*.50 GMA8*.40;
+      fMR by GMA9*.70 GMA10*.50 GMA11*.40 GMA12*.40;
+      fTDR by GMA13*.60 GMA14*.50 GMA15*.20 GMA16*.20;
+      fGMA by fVERB@.8;
+      fGMA by fLN@.8;
+      fGMA by fMR@.7;
+      fGMA by fTDR@.5;
+
+  	fPerSA@1 fComSA@1 fProSA@1 fC@1 fES@1 fXP@1 fSP@1 fVERB@1 fLN@1 fMR@1 fTDR@1;
+  	SA1*.75 SA2*.39 SA3*.76 SA4*.50 SA5*.60 SA6*.66 SA7*1.00;
+      SA8*.45 SA9*.60 SA10*.96 SA11*.91 SA12*.90 SA13*.58;
+      C1-C10*.63 ES1-ES10*.63 XP1-XP7*.36 SP1-SP6*.36;
+      GMA1*.51 GMA2*.51 GMA3*.51 GMA4*.64 GMA5*.75 GMA6*.84 GMA7*.75;
+      GMA8*.84 GMA9*.51 GMA10*.75 GMA11*.84 GMA12*.84 GMA13*.64 GMA14*.75;
+      GMA15*.96 GMA16*.96;
+
+  !Path Coefficients;
+
+
+  	
+      fComSA on fPerSA*0.76;
+  	fProSA on fPerSA@0;
+  	fProSA on fComSA*0.85;
+
+      fC on fPerSA*0.54;
+  	fES on fPerSA*-0.44;
+  	fGMA on fPerSA@.37;
+  	fXP on fPerSA@.17;
+  	fSP on fPerSA@0;
+  	
+  	fC on fComSA@0;
+  	fES on fComSA@0;
+  	fGMA on fComSA*0.53;
+  	fXP on fComSA*0.32;
+  	fSP on fComSA@0;
+  	
+      fC on fProSA@0;
+  	fES on fProSA@0;
+  	fGMA on fProSA*0.57;
+  	fXP on fProSA*0.22;
+  	fSP on fProSA*-0.21;
+  	
+      fC with fES*-0.4;
+  	
+      fGMA on fC@0;
+  	fXP on fC@0;
+  	fSP on fC*0.18;
+
+  	fGMA on fES@0;
+  	fXP on fES@0;
+  	fSP on fES@0;
+  	
+      fXP on fGMA@0;
+  	fSP on fGMA@0;
+  	
+      fSP on fXP@0;
+
+OUTPUT: TECH9;
